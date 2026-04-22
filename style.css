@@ -187,8 +187,59 @@ footer { background:var(--bg); border-top:1px solid var(--border); padding:40px 
 .reveal.visible { opacity:1; transform:translateY(0); }
 
 @media (max-width:900px) {
-  .hero { grid-template-columns:1fr; padding:100px 5% 60px; }
-  .hero-right { display:none; }
+  /* Hero: empilha foto em cima, texto embaixo */
+  .hero {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    padding: 80px 0 0;
+    gap: 0;
+    min-height: auto;
+  }
+
+  /* Foto vem primeiro no mobile */
+  .hero-right {
+    display: flex;
+    order: -1;
+    width: 100%;
+    justify-content: stretch;
+    padding: 0;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.3s forwards;
+  }
+
+  .hero-photo-wrap {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero-photo-frame {
+    height: 320px !important;
+    padding-bottom: 0 !important;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    border-radius: 0;
+  }
+
+  .hero-photo-frame img {
+    object-position: center 20% !important;
+  }
+
+  /* Badges escondidos no mobile para não poluir */
+  .hero-badge-exp,
+  .hero-badge-city,
+  .hero-badge-obras { display: none; }
+
+  /* Cantos decorativos escondidos no mobile */
+  .hero-corner-tl,
+  .hero-corner-br { display: none; }
+
+  /* Texto vem depois da foto */
+  .hero-left {
+    order: 1;
+    padding: 36px 5% 56px;
+  }
+
   .services-grid { grid-template-columns:1fr; }
   .srv-big { grid-column:span 1; }
   .srv-big-visual { display:none; }
